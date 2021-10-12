@@ -3,8 +3,8 @@ function handleRequest(request: Request): Response {
   const now = Date.now();
   const res = JSON.stringify({
     now,
-    friendly: new Date(now),
-    url: request.url,
+    nowFriendly: new Date(now),
+    requestUrl: request.url,
   });
   return new Response(res, {
     headers: { "content-type": "application/json; charset=UTF-8" },

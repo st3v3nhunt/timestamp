@@ -1,9 +1,9 @@
 function generateErrorResponse(searchParams: URLSearchParams) {
-  const error = parseInt(searchParams.get("error") ?? "400", 10);
-  const errorRes = JSON.stringify({
+  const errorParam = searchParams.get("error") ?? ''
+  const error = parseInt(!errorParam ? "400" : errorParam, 10);
+  return new Response(JSON.stringify({
     error,
-  });
-  return new Response(errorRes, {
+  }), {
     headers: { "content-type": "application/json; charset=UTF-8" },
     status: error,
   });

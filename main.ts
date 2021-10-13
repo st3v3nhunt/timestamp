@@ -1,6 +1,9 @@
 function generateErrorResponse(searchParams: URLSearchParams) {
   const errorParam = searchParams.get("error") ?? ''
-  const error = parseInt(!errorParam ? "400" : errorParam, 10);
+  let error = parseInt(!errorParam ? "400" : errorParam, 10);
+  if (error < 400 || error > 599) {
+    error = 400
+  }
   return new Response(JSON.stringify({
     error,
   }), {
